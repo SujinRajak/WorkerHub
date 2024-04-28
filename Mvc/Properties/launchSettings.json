@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WorkerHub.Application": {
+    "Mvc": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

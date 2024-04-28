@@ -1,0 +1,25 @@
+﻿@model SignUpViewModel
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="login-wrapper">
+    <div class="login-inner">
+        <img src="~/assets/images/logo.png" alt="WorkerHub">
+        <div class="login-title"></div>
+        <form class="mb-2" asp-controller="Account" asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <ul>
+                <li>
+                    <input asp-for="Email" class="form-control" autocomplete="email" placeholder="Email" aria-required="true" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </li>
+                <li>
+                    <input type="submit" name="submit" value="Send Me Mail">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+

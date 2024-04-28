@@ -4,6 +4,9 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Helper;
 using Infrastructure.Identity;
+using Application.Interfaces;
+using Application.Services;
+using Application.Services.Email;
 
 namespace Application.Startup
 {
@@ -15,6 +18,9 @@ namespace Application.Startup
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ClaimPrincipalFactory>();
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddTransient<IApplicationUser, ApplicationUserService>();
+            services.AddHttpContextAccessor();
         }
     }
 }

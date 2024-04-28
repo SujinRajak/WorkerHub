@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Invited</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-color: #F5F5F5; margin: 0; padding: 0; font-size: 100%; font-family: 'Arial', sans-serif; line-height: 1.65;">
+        <table style="width: 100% !important; background: #F5F5F5; margin-top: 30px;">
+            <tbody> 
+                <tr> 
+                    <td style="display: block !important; clear: both !important; margin: 0 auto !important; max-width: 680px !important; font-size: 14px; background-color: #EDFFF7; padding: 35px 40px;">
+                        <table style="width: 100% !important; border-collapse: collapse;">
+                            <tr> 
+                                <td align="center" width="175px" style="color: #000000; font-size: 14px;">  
+                                    <div style="display: block !important; clear: both !important; margin: 0 auto !important; margin-bottom: 30px !important;"> 
+                                        <img src="~/assets/media/misc/invitation-icon.png" alt="Invite" style="max-width: 220px; display: block; margin: 0 auto;">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align: center; color: #000000; font-size: 14px;">
+                                    <h5 style="font-size: 17px; font-weight: 600; margin: 0; margin-bottom: 30px; line-height: 1.25; color: #22C17B">Dear {UserName}</h5>
+                                    <ul style="list-style-type:none; margin: 0; padding: 0;"> 
+                                        <li>
+                                            <strong>Please Click on the link to activate your account:</strong> 
+                                             <a href="{EmailConfirmationLink}">Confrim Link</a>
+                                        </li>
+                                        <li> <strong>Password:</strong> {Password}</li>
+                                    </ul>
+                                    <div align="center" style="margin-top: 30px; text-align: center;">
+                                        <a href="{LoginURL}" target="_blank" style="text-decoration: none; outline: 0 !important; display: inline-block; padding: 15px 30px; text-align: center; border:  1px solid #22c17b; background: #22C17B;border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 16px; letter-spacing: 0.07em; color: #fff; margin: 5px; cursor: pointer;">
+                                           Login
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

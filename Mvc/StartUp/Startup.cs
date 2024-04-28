@@ -5,6 +5,7 @@ using Infrastructure;
 using Application.Startup;
 using Infrastructure.Identity;
 using Application.Helpers;
+using Application.Config;
 
 namespace Mvc.Startup
 {
@@ -22,6 +23,9 @@ namespace Mvc.Startup
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -47,7 +51,7 @@ namespace Mvc.Startup
             services.Configure<DataProtectionTokenProviderOptions>(o =>
                  o.TokenLifespan = TimeSpan.FromMinutes(Convert.ToInt32(Configuration["TokenExpireMin"] ?? "0"))
                  );
-
+            services.Configure<Appsettings>(Configuration.GetSection("AppSettings"));
             //Password confirmation email token overrride
             services.Configure<DataProtectionTokenProviderOptions>(o =>
             o.TokenLifespan = TimeSpan.FromMinutes(Convert.ToInt32(Configuration["PasswordTokenExpireMin"] ?? "0"))
@@ -56,12 +60,12 @@ namespace Mvc.Startup
             services.AddControllersWithViews();
             IMvcBuilder builder = services.AddRazorPages();
 
-#if DEBUG
+            #if DEBUG
             if (Env.IsDevelopment())
             {
                 builder.AddRazorRuntimeCompilation();
             }
-#endif            
+            #endif            
             services.AddSession();
             //services.AddHttpContextAccessor();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

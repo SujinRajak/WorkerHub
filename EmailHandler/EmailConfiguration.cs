@@ -15,5 +15,6 @@ namespace EmailHandler
         //[Required]
         public string Password { get; set; }
         public bool EnableSsl { get; set; }
+        public bool DefaultCredentials { get; set; }
     }
 }

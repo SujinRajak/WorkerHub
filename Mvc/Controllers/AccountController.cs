@@ -125,7 +125,7 @@ namespace Application.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            int? v = User;
+            //int? v = User;
             return View();
         }
 

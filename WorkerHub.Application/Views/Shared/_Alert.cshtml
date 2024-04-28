@@ -1,0 +1,26 @@
+﻿@using WorkerHub.Application.Helper.Alert
+@{
+    var alerts = TempData.ContainsKey(Alert.TempKey) ? TempDataExtensions.Get<List<Alert>>(TempData, Alert.TempKey) : new List<Alert>();
+}
+
+@foreach (var alert in alerts)
+{
+    var dissmissbale = alert.Dismissable ? "alert-dismissible" : null;
+    var icon = "";
+    if (@alert.AlertStyle == "danger")
+    {
+        icon = "icon-close-line-icon";
+    }
+    else
+    {
+        icon = "icon-check-circle";
+    }
+    <div id="alertPopUp" class="alert alert-@alert.AlertStyle @dissmissbale fade show" role="alert">
+        <div class="alert-heading"> <div class="alert-notification"><span class=@icon></span></div><div class="title-alert"><strong> @Html.Raw(alert.Message) </strong></div></div>
+        @if (alert.Dismissable)
+        {
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span class="icon-close"></span></button>
+        }
+    </div>
+}
+

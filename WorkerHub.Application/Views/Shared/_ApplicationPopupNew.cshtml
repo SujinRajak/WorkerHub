@@ -1,0 +1,126 @@
+﻿@using DevExtreme.AspNet.Mvc;
+<div>
+    @(Html.DevExtreme().LoadPanel()
+        .ID("applicationPopupNewLoadingPannel")
+        .ShadingColor("rgba(0,0,0,0.4)")
+        .Position(p => p.Of("#applicationPopupNew .dx-popup-content"))
+        .Visible(false)
+        .ShowIndicator(true)
+        .ShowPane(false)
+        .Shading(false)
+        .CloseOnOutsideClick(true)
+    )
+</div>
+<div>
+    @(Html.DevExtreme().Popup()
+      .ID("applicationPopupNew")
+      .Width(500)
+      .Height(250)
+      .ShowTitle(true)
+      .Title("")
+      .Visible(false)
+      .DragEnabled(true)
+      .CloseOnOutsideClick(false)
+      .ContentTemplate(new TemplateName("dxPopupNewTemplate"))
+      )
+
+      @using(Html.DevExtreme().NamedTemplate("dxPopupNewTemplate")){
+
+        <div class="popupContainer"></div>
+         @* @(Html.DevExtreme().ScrollView()
+        .Width("100%")
+        .Height("100%")
+        .ID("dxPopupScrollView")
+        .Content(@<text>
+                    <div class="popupContainer"></div>
+                </text>)
+        )*@
+      }
+</div>
+<script>
+    var applicationPopupNew = {
+        show: function (url, height, width, title, showTitle = true, dismissCallBack) {
+
+            url += (url.indexOf('?') !== -1 ? '&' : '?') + 'v=' + Math.random();
+            height = typeof height !== 'undefined' ? height : 200;
+            width = typeof width !== 'undefined' ? width : 300;
+            title = typeof title !== 'undefined' ? title : 'Entervu';
+            var titleTemplate = `<div class="popup-new-title"> ` + `<div class="popup-heading"><h2>` + title + `</h2></div> <button class="close-icon" onclick="applicationPopupNew.hide()"><span class="icon-close"></span></button> </div>`;
+                    var popup = $("#applicationPopupNew").dxPopup("instance");
+                    popup.option("title", title);
+                    popup.option("titleTemplate", titleTemplate);
+                    popup.option("height", height);
+                    popup.option("width", width);
+                    popup.option("showTitle", showTitle);
+                    if(dismissCallBack){
+                        popup.option("onHidden", dismissCallBack)
+                    }
+                    $(".dx-popup-content").on("dxmousewheel", function (e) {
+                        e.stopPropagation(); 
+                    });
+                    popup.show();
+                    //var popupView = $("#dxPopupScrollView").dxScrollView("instance");
+                    popup.content()[0].innerHTML = "";
+                    $("#applicationPopupNewLoadingPannel").dxLoadPanel("instance").show();
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache: false,
+                dataType: "html",
+                success: function (data) {
+                    var node = document.createElement("DIV");
+                    node.innerHTML = data;
+                    popup.content()[0].appendChild(node);
+                    nodeScript.replace(popup.content()[0]);
+                    $("#applicationPopupNewLoadingPannel").dxLoadPanel("instance").hide();
+                },
+                error:function(){
+                    var data=`<div class="container">
+                                  <div class="no-data-popup">
+                                      <div class="">
+                                      <h2 class="text-center text-muted">No data to display</h2>
+                                      <button class="btn" onclick="applicationPopupNew.hide()">Close</button>
+                                    </div>
+                                  </div>
+                                </div>`;
+                    var node = document.createElement("DIV");
+                    node.innerHTML = data;
+                    popup.content()[0].appendChild(node);
+                    nodeScript.replace(popup.content()[0]);
+                    $("#applicationPopupNewLoadingPannel").dxLoadPanel("instance").hide();
+                }
+            });
+        },
+
+        hide() {
+            var popup = $("#applicationPopupNew").dxPopup("instance");
+            popup.hide();
+        }
+    }
+
+    var nodeScript = {
+
+        replace: function (node) {
+            if (node.tagName === "SCRIPT") {
+                node.parentNode.replaceChild(this.clone(node), node);
+            } else {
+                var i = 0;
+                var children = node.childNodes;
+                while (i < children.length) {
+                    this.replace(children[i++]);
+                }
+            }
+
+            return node;
+        },
+
+        clone: function (node) {
+            var script = document.createElement("script");
+            script.text = node.innerHTML;
+            for (var i = node.attributes.length - 1; i >= 0; i--) {
+                script.setAttribute(node.attributes[i].name, node.attributes[i].value);
+            }
+            return script;
+        }
+    }
+</script>

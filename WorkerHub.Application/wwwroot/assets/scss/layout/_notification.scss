@@ -1,0 +1,48 @@
+.content-flag{
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 10px;
+}
+.content-flag__block{
+    @include flex();
+    .prof-image{
+        width:40px ;
+        height: 40px;
+        background-color: #AA66BB;
+        border-radius: 50%;
+        overflow: hidden;
+        @include flex-b-center();
+        margin-right: 20px;
+        @include breakpoint(small){
+            margin-right: 0;
+        }
+        span{
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $white-color;
+        }
+        img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+    .prof-detail{
+        max-width: calc(100% - 60px);
+       
+    }
+    .profile-detail__content{
+        display: flex;
+        span{
+            margin-right: 15px;
+        }
+    }
+    .time{
+        color: rgba(73, 73, 73, 0.8);
+        font-size: 13px;
+        font-weight: 400px;
+    }
+
+}

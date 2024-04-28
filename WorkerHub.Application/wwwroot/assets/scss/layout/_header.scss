@@ -1,0 +1,96 @@
+.header{
+    padding: 10px 15px 10px 15px;
+    @extend .normal-shadow;
+    position: fixed;
+    top: 0;
+    right:0;
+    width: calc(100% - 85px);
+    z-index: 1;
+    @extend .normal-transition;
+    display: flex;
+    justify-content: space-between;
+    background: $white-color;
+    .header-right{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .user-head-right{
+        padding-top: 5px;
+        @include flex();
+        align-items: center;
+        padding-left: 15px;
+        span{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #0BAEEB;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
+    .search{
+        margin-right: 10px;
+        .form-control{
+            width: 450px;
+           }
+    }
+    .header-left{
+        padding-top: 5px;
+        h1{
+            color: $dark-color;
+            font-weight: bold;
+            margin-bottom: 0;  
+        }
+    }
+    .bell-group{
+        padding-right: 10px;
+        padding-left: 10px;
+       button{
+        background: $white-color;
+        &:after{
+            display: none;
+        }
+       }
+    }
+    .btn-group {
+        button{
+            border: none;
+            padding: 0;
+        }
+    }
+    .circle-btn{
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $blue-color;
+        top: 28px;
+        right: 2px;
+        position: absolute;
+    }
+    .icon-bell{
+        font-size: 20px;
+    }
+    sup{
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: $red-color;
+        color:$white-color;
+        display: inline-block;
+        line-height: 12px;
+        vertical-align: middle;
+        position: absolute;
+        right: 7px;
+        top: -1px;
+    }
+}
+.header-left{
+    @include flex-v-center();
+}
+.logo{
+    height: 70px;
+    border-bottom: 1px solid #1F1F1F;
+}
+.user-group button:after{
+    display: none;
+}

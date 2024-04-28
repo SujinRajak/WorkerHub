@@ -1,0 +1,41 @@
+﻿@model LoginRequestViewModel
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Log in";
+}
+
+<div class="login-wrapper">
+    <div class="login-inner">
+        <img src="~/assets/images/logo.png" alt="WorkerHub">
+        <div class="login-title">
+            <h2>
+                ADMINISTRATIVE PORTAL
+            </h2>
+            <p>
+                Enter your details to login into your account
+            </p>
+        </div>
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <ul>
+                <li>
+                    <input asp-for="Username" class="form-control" autocomplete="username" placeholder="Username" aria-required="true" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </li>
+                <li>
+                    <input asp-for="Password" type="password" class="form-control" autocomplete="current-password" placeholder="Password" aria-required="true" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </li>
+                <li>
+                   @* <div class="forget">
+                        <a href="#">Forgot Password?</a>
+                    </div>*@
+                </li>
+                <li>
+                    <input type="submit" name="submit" value="LOGIN">
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+

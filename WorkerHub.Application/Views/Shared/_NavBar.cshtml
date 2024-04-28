@@ -1,0 +1,60 @@
+﻿<div class="secondary-section">
+    <div class="secondary-btn">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </div>
+    <div class="logo">
+        <div class="logo-small">
+            <img src="~/assets/images/main-logo.svg" alt="">
+        </div> <!-- logo -->
+        <div class="logo-big">
+            <img src="~/assets/images/logo.svg" alt="">
+        </div> <!-- logo -->
+    </div>
+    <div class="menu">
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="Index" title="Dashboard">
+                    <div class="menu-item-wrap">
+                        <span class="icon icon-menu"></span>
+                        <span class="menu-item"> Dashboard</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="User" asp-action="Index" title="User info">
+                    <div class="menu-item-wrap">
+                        <span class="icon icon-users"></span>
+                        <span class="menu-item"> User Info</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Content" asp-action="Index" title="Content Moderation">
+                    <div class="menu-item-wrap">
+                        <span class="icon-flag"></span>
+                        <span class="menu-item"> Content Moderation</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Notification" asp-action="Index" title="Mass Notification">
+                    <div class="menu-item-wrap">
+                        <span class="icon-notification"></span>
+                        <span class="menu-item"> Mass Notification</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div> <!-- menu -->
+    <div class="logout">
+        <a asp-controller="Account" asp-action="LogOut">
+            <div class="menu-item-wrap">
+                <span class="icon-logout"></span>
+                <span class="menu-item"> Logout</span>
+            </div>
+        </a>
+    </div> <!-- logout-->
+</div> <!-- left-sidebar -->
+
+
+

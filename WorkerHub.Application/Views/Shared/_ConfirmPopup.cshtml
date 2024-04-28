@@ -1,0 +1,40 @@
+﻿
+<div id="confirmDialog"> </div>
+<script>
+    var showConfirmationDialogue = function (title, message, confirmFunction, param1,param2) {
+        $("#confirmDialog").dxPopup({
+            showTitle: true,
+            title: title,
+            showCloseButton: true,
+            height: "200px",
+            width: "400px",
+            titleTemplate: `<div class="popup-new-title"> ` + `<div class="popup-heading"><h2>` + title + `</h2></div> <button class="close-icon" onclick="hide()"><span class="icon-close"></span></button> </div>`,
+            contentTemplate: function (contentElement) {
+                contentElement.append("<div class='main-popup-inner custom-message'>" + message + "</div>");
+                var btnDiv = $("<div  class='popup-bottom'>");
+                contentElement.append(btnDiv);
+                var confirmButton = $("<button class='primary-btn blue-btn'>");
+                btnDiv.append(confirmButton);
+                confirmButton.text("Confirm");
+                confirmButton.on("click", function () {
+                    // handle confirm action here
+                    confirmFunction(param1,param2)
+                    $("#confirmDialog").dxPopup("instance").hide();
+                });
+                var cancelButton = $("<button class='primary-btn red-btn'>");
+                btnDiv.append(cancelButton);
+                cancelButton.text("Cancel");
+                cancelButton.on("click", function () {
+                    $("#confirmDialog").dxPopup("instance").hide();
+                });
+                }
+        });
+
+        // show the confirm dialog
+        $("#confirmDialog").dxPopup("instance").show();
+    }
+
+    hide = function(){
+        $("#confirmDialog").dxPopup("instance").hide()
+    }
+</script>

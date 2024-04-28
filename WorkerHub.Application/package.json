@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "compile:sass": "node-sass wwwroot/assets/scss/style.scss   wwwroot/assets/css/style.css -w"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0"
+  }
+}

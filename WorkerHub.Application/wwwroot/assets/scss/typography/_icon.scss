@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?6rlywz');
+  src:  url('../fonts/icomoon.eot?6rlywz#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?6rlywz') format('truetype'),
+    url('../fonts/icomoon.woff?6rlywz') format('woff'),
+    url('../fonts/icomoon.svg?6rlywz#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-close-line-icon:before {
+  content: "\e918";
+  color: #dd425a;
+}
+.icon-check-circle:before {
+  content: "\e913";
+  color: #27ae60;
+}
+.icon-flag:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-notification:before {
+  content: "\e915";
+  color: #fff;
+}
+.icon-comment-dots:before {
+  content: "\e916";
+  color: #0baeeb;
+}
+.icon-close:before {
+  content: "\e917";
+}
+.icon-arrow-down:before {
+  content: "\e90e";
+}
+.icon-user-icon:before {
+  content: "\e90f";
+  color: #494949;
+}
+.icon-business:before {
+  content: "\e910";
+  color: #494949;
+}
+.icon-map:before {
+  content: "\e911";
+  color: #494949;
+}
+.icon-filter:before {
+  content: "\e912";
+  color: #fff;
+}
+.icon-sort:before {
+  content: "\e90d";
+}
+.icon-delete-user:before {
+  content: "\e90b";
+  color: #fff;
+}
+.icon-unborn-user:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-logout:before {
+  content: "\e90a";
+  color: #fff;
+}
+.icon-total-job:before {
+  content: "\e907";
+}
+.icon-total-user:before {
+  content: "\e908";
+}
+.icon-total-video:before {
+  content: "\e909";
+}
+.icon-export .path1:before {
+  content: "\e905";
+  color: rgb(58, 58, 135);
+}
+.icon-export .path2:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.2;
+}
+.icon-search:before {
+  content: "\e904";
+  color: #494949;
+}
+.icon-bell:before {
+  content: "\e903";
+}
+.icon-users:before {
+  content: "\e900";
+  color: #fff;
+}
+.icon-file:before {
+  content: "\e901";
+  color: #fff;
+}
+.icon-menu:before {
+  content: "\e902";
+  color: #fff;
+}

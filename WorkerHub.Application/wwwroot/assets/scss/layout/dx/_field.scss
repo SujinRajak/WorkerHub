@@ -1,0 +1,18 @@
+.dx-selectbox,
+.dx-texteditor.dx-editor-outlined{
+     border: 1px solid rgba(16, 16, 16, 0.24);
+    border-radius: 8px;
+    font-size: 12px;
+    height: 44px;
+    font-size: 13px;
+    color:$dark-color;
+}
+.dx-texteditor-input{
+color: $dark-color;
+}
+.dx-dropdowneditor-icon:before{
+    content: "\e90e";
+    font-family: 'icomoon' !important;
+    font-size: 22px;
+    margin-left: -12px;
+}

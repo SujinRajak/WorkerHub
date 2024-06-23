@@ -1,5 +1,5 @@
 ﻿using Mvc.Interfaces;
-using Application.ViewModel;
+using Mvc.ViewModel;
 using Microsoft.VisualBasic;
 using Serilog;
 using System;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Config
+namespace Mvc.Config
 {
     public class Appsettings
     {

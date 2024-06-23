@@ -4,11 +4,11 @@ using Domain.Interfaces;
 using Infrastructure.Data;
 using Helper;
 using Infrastructure.Identity;
-using Application.Interfaces;
-using Application.Services;
-using Application.Services.Email;
+using Mvc.Interfaces;
+using Mvc.Services;
+using Mvc.Services.Email;
 
-namespace Application.Startup
+namespace Mvc.Startup
 {
     public static class InternalDependenciesRegistration
     {

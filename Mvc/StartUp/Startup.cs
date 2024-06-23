@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpOverrides;
 using Infrastructure;
-using Application.Startup;
+using Mvc.Startup;
 using Infrastructure.Identity;
-using Application.Helpers;
-using Application.Config;
-using Application.Helper;
+using Mvc.Helpers;
+using Mvc.Config;
+using Mvc.Helper;
 
 namespace Mvc.Startup
 {

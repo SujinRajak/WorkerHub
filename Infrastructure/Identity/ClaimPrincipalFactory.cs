@@ -1,4 +1,5 @@
-﻿using Infrastructure;
+﻿using Domain.Entities;
+using Infrastructure;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -22,17 +23,14 @@ namespace Infrastructure.Identity
         {
             var principal = await base.CreateAsync(user);
 
-           // var appUser = await _db.vw_EmployeeInfo.FirstOrDefaultAsync(c => c.UserName == user.UserName) ?? new vw_EmployeeInfo();
+            var appUser = _db.vw_EmployeeInfo.FirstOrDefault(c => c.Id == user.Id) ?? new vw_EmployeeInfo();
 
-           // ((ClaimsIdentity)principal.Identity).AddClaims(new[] {
+            ((ClaimsIdentity)principal.Identity).AddClaims(new[] {
 
-           //// new Claim("EmployeeName",appUser.FullName?? ""),
-           // //new Claim("UserType",appUser.emp_type??""),
-           // //new Claim("UserId", appUser.UserId ?? ""),
-           //// new Claim("Role", appUser.Role?? ""),
-           //// new Claim("EmployeeId", appUser.EmployeeId.ToString())
-
-           // });
+                new Claim("EmployeeName",appUser.Name?? ""),
+                new Claim("UserId", appUser.Id ?? ""),
+                new Claim("Role", appUser.Role?? ""),
+            });
 
             return principal;
         }

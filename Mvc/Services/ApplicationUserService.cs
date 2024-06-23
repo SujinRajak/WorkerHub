@@ -1,4 +1,4 @@
-﻿using Application.Interfaces;
+﻿using Mvc.Interfaces;
 using Application.ViewModel;
 using Microsoft.VisualBasic;
 using Serilog;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Mvc.Services
 {
     public class ApplicationUserService : IApplicationUser
     {

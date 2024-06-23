@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Application.Helpers
+namespace Mvc.Helpers
 {
     public class MappingProfile:Profile
     {

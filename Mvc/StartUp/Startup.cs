@@ -6,6 +6,7 @@ using Application.Startup;
 using Infrastructure.Identity;
 using Application.Helpers;
 using Application.Config;
+using Application.Helper;
 
 namespace Mvc.Startup
 {
@@ -46,7 +47,21 @@ namespace Mvc.Startup
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddClaimsPrincipalFactory<ClaimPrincipalFactory>();
-            
+
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("AdminOnly",
+                    policy => policy.RequireAssertion(context => context.User.IsAdmin())
+                );
+
+                option.AddPolicy("HiringManger",
+                    policy => policy.RequireAssertion(context => context.User.IsHighringManager()));
+
+                option.AddPolicy("Employee",
+                      policy => policy.RequireAssertion(context => context.User.IsEmployee()));
+
+            });
+
             //Authentication token
             services.Configure<DataProtectionTokenProviderOptions>(o =>
                  o.TokenLifespan = TimeSpan.FromMinutes(Convert.ToInt32(Configuration["TokenExpireMin"] ?? "0"))

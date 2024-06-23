@@ -1,4 +1,4 @@
-﻿namespace Application.ViewModel
+﻿namespace Mvc.ViewModel
 {
     public class EmailConfirmationModel
     {

@@ -6,7 +6,7 @@ using Infrastructure.Identity;
 using Infrastructure;
 using ViewModel;
 using Mvc.Helper;
-using Application.Interfaces;
+using Mvc.Interfaces;
 using Application.ViewModel;
 using Application.Config;
 using Microsoft.Extensions.Options;
@@ -58,7 +58,7 @@ namespace Application.Controllers
                 string password = RandomPassGenerator.GeneratePassword(12, includeUppercase: true, includeLowercase: true, includeDigits: true, includeSpecialCharacters: true);
 
                 var result = await _userManager.CreateAsync(user, password);
-              
+
                 //built in method suceeeded to check if the result succeded or not
                 if (result.Succeeded)
                 {
@@ -70,8 +70,8 @@ namespace Application.Controllers
                     EmailConfirmationModel emailConfirmationModel = new EmailConfirmationModel()
                     {
                         EmailConfirmationLink = confirmlink,
-                        UserName=user.UserName,
-                        Password=password,
+                        UserName = user.UserName,
+                        Password = password,
                     };
                     _applicationinfo.SendEmail(emailConfirmationModel, _app.EmailTemplatePath);
                     //sign in th user and forwarded to the location
@@ -79,7 +79,7 @@ namespace Application.Controllers
                     Success("Email Has been sent to the user for Email Verification", true);
                     return RedirectToAction("Login", "Account");
                 }
-                
+
                 Danger("Error Occured while Sending Email to the User!", true);
                 //loopthrough each errors in error collection
                 foreach (var error in result.Errors)
@@ -147,28 +147,27 @@ namespace Application.Controllers
                         return View();
                     }
                 }
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent:false, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: false, lockoutOnFailure: false);
                 //built in method suceeeded to check if the result succeded or not
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByEmailAsync(model.Username);
                     // Get the roles for the user
-                    //var roles = await _userManager.GetRolesAsync(user);
-
-                    //if (roles.First() == "Admin")
-                    //{
-                    //    return RedirectToAction("AdminPage", "Administration");
-                    //}
-                    //else if (roles.First() == "Hiring Manager")
-                    //{
-                    //    return RedirectToAction("HighHome", "High");
-                    //}
-                    //else
-                    //{
+                    var roles = await _userManager.GetRolesAsync(user);
                     Success("User Logged in!", true);
-                    return RedirectToAction("Index", "Home");
-                   // }
-
+                    if (roles.First() == "Admin")
+                    {
+                        return RedirectToAction("AdminPage", "Administration");
+                    }
+                    else if (roles.First() == "Hiring Manager")
+                    {
+                        return RedirectToAction("HighHome", "High");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 Danger("Invalid User Login!", true);
             }

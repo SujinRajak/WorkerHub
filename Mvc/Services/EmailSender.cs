@@ -1,7 +1,7 @@
 ﻿using EmailHandler;
-using Application.Interfaces;
+using Mvc.Interfaces;
 
-namespace Application.Services.Email
+namespace Mvc.Services.Email
 {
     public class EmailSender : IEmailSender
     {

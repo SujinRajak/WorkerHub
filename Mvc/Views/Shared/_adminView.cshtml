@@ -1,0 +1,255 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Favicon//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Favicon//favicon-16x16.png">
+    <title>Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/assets/vendor/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/assets/vendor/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/assets/vendor/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/assets/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/assets/vendor/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/assets/vendor/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+
+    <link href="~/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a asp-controller="Administration" asp-action="AdminPage" class="site_title"> <img src="~/Favicon//favicon-32x32.png" /> <span>WorkerHub</span></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_info">
+                                <h2><span>Welcome,</span> @User.Identity.Name</h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>General</h3>
+                                <ul class="nav side-menu">
+
+                                    <li>
+                                    <li>
+                                        <a asp-controller="Administration" asp-action="AdminPage"><i class="fa fa-home"></i>Home</a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Roles <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-controller="Administration" asp-action="CreateRole">Create Roles</a></li>
+                                            <li><a asp-controller="Administration" asp-action="RoleAssign">Assign Roles</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-users"></i> User Profiles <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-controller="Administration" asp-action="ShowEmployee">Employees</a></li>
+                                            <li><a asp-controller="Administration" asp-action="ShowHiringManager">Hiring Managers</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li>-->
+                                        @*<a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-controller="Administration" asp-action="RoleAssign">Assign Roles</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-controller="Administration" asp-action="RoleAssign">Assign Roles</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-controller="Administration" asp-action="RoleAssign">Assign Roles</a></li>
+                                        </ul>
+                                    </li>*@
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class=" navbar-right">
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        @User.Identity.Name
+                                    </a>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                        <form class="dropdown-item" asp-controller="Account" asp-action="Logout">
+                                            <button type="submit" class="btn btn-block btn-sm text-left p-0 m-0">Logout <i class="fa fa-sign-out float-right"></i></button>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                @RenderBody()
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                    <ul class=" navbar-right">
+                        <li class="nav-item">
+                            <a class="mainbutt text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" mainbutt text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+
+
+    <!-- jQuery -->
+    <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/assets/vendor/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/assets/vendor/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/assets/vendor/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/assets/vendor/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/assets/vendor/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/assets/vendor/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/assets/vendor/Flot/jquery.flot.js"></script>
+    <script src="~/assets/vendor/Flot/jquery.flot.pie.js"></script>
+    <script src="~/assets/vendor/Flot/jquery.flot.time.js"></script>
+    <script src="~/assets/vendor/Flot/jquery.flot.stack.js"></script>
+    <script src="~/assets/vendor/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/assets/vendor/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/assets/vendor/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/assets/vendor/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="~/assets/vendor/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/assets/vendor/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/assets/vendor/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/assets/vendor/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/assets/vendor/moment/min/moment.min.js"></script>
+    <script src="~/assets/vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!--asdasdasdasdas-->
+    <!-- iCheck -->
+    <script src="~/assets/vendor/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="~/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/assets/vendor/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="~/assets/vendor/jszip/dist/jszip.min.js"></script>
+    <script src="~/assets/vendor/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/assets/vendor/pdfmake/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/js/custom.min.js"></script>
+</body>
+</html>
+

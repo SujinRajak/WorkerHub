@@ -1,0 +1,35 @@
+﻿<div class="main-section">
+    <div class="block-grid-wrap">
+        @(Html.DevExtreme().DataGrid()
+            .ID("gridContainer")
+            .ShowBorders(true)
+            .DataSource(d => d.Mvc().Controller("Admin").LoadAction("GetAllEmployeeList").Key("id"))
+            .RemoteOperations(true)
+            .Columns(c =>
+            {
+                c.Add().Caption("User Name").DataField("userName").Width("15%");
+                c.Add().Caption("Email").DataField("email").Width("25%");
+                c.Add().Caption("Phone Number").DataField("phoneNumber");
+                c.Add().Caption("Name").DataField("name");
+                c.Add().Caption("Current Address").DataField("address");
+                c.Add().Caption("Location").DataField("fullAddress");
+            }).WordWrapEnabled(true)
+            .RowAlternationEnabled(true)
+            .Paging(paging => paging.PageSize(20))
+            .Pager(pager =>
+            {
+                pager.Visible(true);
+                pager.ShowPageSizeSelector(true);
+                pager.AllowedPageSizes(new JS("[10, 20, 50]"));
+                pager.ShowInfo(false);
+                pager.ShowNavigationButtons(true);
+            })
+            .FilterRow(filterRow => filterRow
+            .Visible(true)
+            .ApplyFilter(GridApplyFilterMode.Auto)
+            )
+            .HeaderFilter(headerFilter => headerFilter.Visible(false))
+            )
+    </div>
+</div>
+

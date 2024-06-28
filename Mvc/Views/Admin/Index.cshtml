@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="block">
+                        <div class="block" data-type="employees">
                             <span class="icon-total-user block-icon"></span>
                             <h3>@Model.TotalUsers</h3>
                             <p>
@@ -18,7 +18,7 @@
                         </div> <!-- block -->
                     </div>
                     <div class="col-md-3">
-                        <div class="block">
+                        <div class="block" data-type="hiring-managers">
                             <span class="icon-total-video block-icon"></span>
                             <h3>@Model.HighringMangerCount</h3>
                             <p>
@@ -27,7 +27,7 @@
                         </div> <!-- block -->
                     </div>
                     <div class="col-md-3">
-                        <div class="block">
+                        <div class="block" data-type="users">
                             <span class="icon-total-job block-icon"></span>
                             <h3>@Model.EmployeeCount</h3>
                             <p>
@@ -36,7 +36,7 @@
                         </div> <!-- block -->
                     </div>
                     <div class="col-md-3">
-                        <div class="block">
+                        <div class="block" data-type="roles">
                             <span class="icon-total-job block-icon"></span>
                             <h3>@Model.TotalRoles</h3>
                             <p>
@@ -45,13 +45,13 @@
                         </div> <!-- block -->
                     </div>
                     @* <div class="col-md-4">
-                        <div class="block">
-                            <span class="icon-total-job block-icon"></span>
-                            <h3>@Model.TotalJobs</h3>
-                            <p>
-                                Total Jobs
-                            </p>
-                        </div> <!-- block -->
+                    <div class="block">
+                    <span class="icon-total-job block-icon"></span>
+                    <h3>@Model.TotalJobs</h3>
+                    <p>
+                    Total Jobs
+                    </p>
+                    </div> <!-- block -->
                     </div> *@
                 </div> <!-- row -->
             </div> <!-- col -->
@@ -60,4 +60,32 @@
     @* <div class="report-section">
     <h2>Reports</h2>
     </div> <!-- report-section -->*@
+    <div id="additional-content-container"></div> <!-- Container to load additional content -->
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Load the users content by default when the page loads
+        loadAdditionalContent('employees');
+
+        // Bind click events after loading the partial view
+        $('.block').on('click', function () {
+            var type = $(this).data('type');
+            loadAdditionalContent(type);
+        });
+    });
+
+    function loadAdditionalContent(type) {
+        $.ajax({
+            url: '@Url.Action("GetAdditionalContent", "Admin")',
+            type: 'GET',
+            data: { type: type },
+            success: function (data) {
+                $('#additional-content-container').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+</script>

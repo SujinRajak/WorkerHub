@@ -1,16 +1,20 @@
 ﻿using Mvc.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using DevExtreme.AspNet.Mvc;
+using DevExtreme.AspNet.Data;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Mvc.Controllers
 {
     public class AdminController : Controller
     {
         private IAdmin _admin;
-        public AdminController(IAdmin admin)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AdminController(IAdmin admin, RoleManager<IdentityRole> roleManager)
         {
-            _admin = admin;     
+            _admin = admin;  
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -33,9 +37,86 @@ namespace Mvc.Controllers
 
             var loggedInUserName = User.Claims.FirstOrDefault(a => a.Type == "EmployeeName");
             ViewData["HeaderText"] = $"{greeting} - {loggedInUserName?.Value}";
-            var model = _admin.GetTotalCount();
-            return View(model);
+            var dashboardCount = _admin.GetTotalCount();
+            return View(dashboardCount);
         }
+
+        [HttpGet("GetAllEmployeeInfo")]
+        public async Task<object> GetAllEmployeeInfo(DataSourceLoadOptions loadOptions)
+        {
+            var data = await _admin.GetAllEmployeeInfo();
+            if (data.Count > 0)
+            {
+                return DataSourceLoader.Load(data.OrderBy(a => a.Name), loadOptions);
+            }
+            return DataSourceLoader.Load(new List<vw_EmployeeInfo>(), loadOptions);
+        }
+
+
+        [HttpGet("GetAllEmployeeList")]
+        public async Task<object> GetAllEmployeeList(DataSourceLoadOptions loadOptions)
+        {
+            var data = await _admin.GetAllEmployees();
+            if (data.Count > 0)
+            {
+                return DataSourceLoader.Load(data.OrderBy(a => a.Name), loadOptions);
+            }
+            return DataSourceLoader.Load(new List<vw_EmployeeList>(), loadOptions);
+        }
+
+        [HttpGet("GetAllHigeringManagersList")]
+        public async Task<object> GetAllHigeringManagersList(DataSourceLoadOptions loadOptions)
+        {
+            var data = await _admin.GetAllHiringManagersList();
+            if (data.Count > 0)
+            {
+                return DataSourceLoader.Load(data.OrderBy(a=>a.Name), loadOptions);
+            }
+            return DataSourceLoader.Load(new List<vw_HiringMangersList>(), loadOptions);
+        }
+
+        [HttpGet("GetAllRoles")]
+        public async Task<object> GetAllRoles(DataSourceLoadOptions loadOptions)
+        {
+            var data = _roleManager.Roles;
+            if (data !=null)
+            {
+                return DataSourceLoader.Load(data.OrderBy(a => a.Name), loadOptions);
+            }
+            return DataSourceLoader.Load(new List<vw_HiringMangersList>(), loadOptions);
+        }
+
+
+        [HttpGet("GetAdditionalContent")]
+        public IActionResult GetAdditionalContent(string type)
+        {
+            if (type == "users")
+            {
+                // Return the partial view for users
+                return PartialView("_UserGridPartial");
+            }
+            else if (type == "hiring-managers")
+            {
+                return PartialView("_HiringMangersGridPartial");
+            }
+            else if ( type == "employees")
+            {
+                return PartialView("_EmployeeInfo");
+            } 
+            else if ( type == "roles")
+            {
+                return PartialView("_RolesInfo");
+            }
+            
+            string content = type switch
+            {
+                _ => "No content available."
+            };
+
+            return Content(content);
+        }
+
+
 
         //[HttpGet]
         //public async Task<IActionResult> AdminPage()

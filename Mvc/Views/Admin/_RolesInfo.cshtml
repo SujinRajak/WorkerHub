@@ -1,0 +1,30 @@
+﻿<div class="main-section">
+    <div class="block-grid-wrap">
+        @(Html.DevExtreme().DataGrid()
+            .ID("hiringManagersGridContainer")
+            .ShowBorders(true)
+            .DataSource(d => d.Mvc().Controller("Admin").LoadAction("GetAllRoles").Key("id"))
+            .RemoteOperations(true)
+            .Columns(c =>
+            {
+                c.Add().Caption("Name").DataField("name").Width("25%");
+            }).WordWrapEnabled(true)
+            .RowAlternationEnabled(true)
+            .Paging(paging => paging.PageSize(20))
+            .Pager(pager =>
+            {
+                pager.Visible(true);
+                pager.ShowPageSizeSelector(true);
+                pager.AllowedPageSizes(new JS("[10, 20, 50]"));
+                pager.ShowInfo(false);
+                pager.ShowNavigationButtons(true);
+            })
+            .FilterRow(filterRow => filterRow
+            .Visible(true)
+            .ApplyFilter(GridApplyFilterMode.Auto)
+            )
+            .HeaderFilter(headerFilter => headerFilter.Visible(false))
+            )
+    </div>
+</div>
+

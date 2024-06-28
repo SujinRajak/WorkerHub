@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Helper.Alert;
 using Infrastructure.Identity;
 using Infrastructure;
-using Mvc.ViewModel;
+using Mvc.ViewModels;
 using Mvc.Helper;
 using Mvc.Interfaces;
 using Mvc.Config;

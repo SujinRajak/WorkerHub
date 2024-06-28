@@ -36,6 +36,14 @@ function formatDate(date) {
     return localDateStr;
 }
 
+function availability(value) {
+    if (value) {
+        return true
+    } else {
+        return false
+    }
+}
+
 var myCustomStore = new DevExpress.data.CustomStore({
     key: "codeId",
     load: function (searchOptions) {

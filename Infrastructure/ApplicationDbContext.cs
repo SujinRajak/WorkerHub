@@ -45,7 +45,6 @@ namespace Infrastructure
                     .HasColumnName("img");
 
                 entity.Property(e => e.Name).HasMaxLength(201);
-
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
@@ -65,17 +64,10 @@ namespace Infrastructure
                     .IsUnicode(false)
                     .HasColumnName("citizenship");
 
-                entity.Property(e => e.City)
+                entity.Property(e => e.FullAddress)
                     .HasMaxLength(100)
                     .IsUnicode(false)
-                    .HasColumnName("city");
-
-                entity.Property(e => e.Country)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("country");
-
-                entity.Property(e => e.Descripition).HasMaxLength(255);
+                    .HasColumnName("FullAddress");
 
                 entity.Property(e => e.Dob)
                     .HasColumnType("datetime")
@@ -91,23 +83,11 @@ namespace Infrastructure
 
                 entity.Property(e => e.Name).HasMaxLength(201);
 
-                entity.Property(e => e.PermanentAddress).HasMaxLength(255);
+                entity.Property(e => e.Address).HasMaxLength(255);
 
                 entity.Property(e => e.Role).HasMaxLength(256);
 
                 entity.Property(e => e.Sex).HasMaxLength(10);
-
-                entity.Property(e => e.States)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("states");
-
-                entity.Property(e => e.Streetname)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("streetname");
-
-                entity.Property(e => e.TemporaryAddress).HasMaxLength(255);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
@@ -128,18 +108,6 @@ namespace Infrastructure
                     .IsUnicode(false)
                     .HasColumnName("citizenship");
 
-                entity.Property(e => e.City)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("city");
-
-                entity.Property(e => e.Country)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("country");
-
-                entity.Property(e => e.Descripition).HasMaxLength(255);
-
                 entity.Property(e => e.Dob)
                     .HasColumnType("datetime")
                     .HasColumnName("dob");
@@ -154,23 +122,11 @@ namespace Infrastructure
 
                 entity.Property(e => e.Name).HasMaxLength(201);
 
-                entity.Property(e => e.PermanentAddress).HasMaxLength(255);
+                entity.Property(e => e.Address).HasMaxLength(255);
 
                 entity.Property(e => e.Role).HasMaxLength(256);
 
                 entity.Property(e => e.Sex).HasMaxLength(10);
-
-                entity.Property(e => e.States)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("states");
-
-                entity.Property(e => e.Streetname)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("streetname");
-
-                entity.Property(e => e.TemporaryAddress).HasMaxLength(255);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });

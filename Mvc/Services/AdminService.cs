@@ -21,6 +21,11 @@ namespace Mvc.Services
             _uow = uow;
         }
 
+        public async Task<List<vw_EmployeeInfo>> GetAllEmployeeInfo()
+        {
+            return await _uow.AsyncRepository<vw_EmployeeInfo>().ListAllAsync();
+        }
+
         public async  Task<List<vw_EmployeeList>> GetAllEmployees()
         {
             return await _uow.AsyncRepository<vw_EmployeeList>().ListAllAsync();

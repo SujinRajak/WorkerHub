@@ -4,14 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Helper.Alert;
 using Infrastructure.Identity;
 using Infrastructure;
-using ViewModel;
+using Mvc.ViewModel;
 using Mvc.Helper;
 using Mvc.Interfaces;
-using Mvc.ViewModel;
 using Mvc.Config;
 using Microsoft.Extensions.Options;
-using DevExpress.Utils.OAuth.Provider;
-using Mvc.Models;
 
 namespace Application.Controllers
 {
@@ -157,7 +154,7 @@ namespace Application.Controllers
                     Success("User Logged in!", true);
                     if (roles.First() == "Admin")
                     {
-                        return RedirectToAction("AdminPage", "Administration");
+                        return RedirectToAction("Index", "Admin");
                     }
                     else if (roles.First() == "Hiring Manager")
                     {
@@ -167,7 +164,7 @@ namespace Application.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    
+
                 }
                 Danger("Invalid User Login!", true);
             }

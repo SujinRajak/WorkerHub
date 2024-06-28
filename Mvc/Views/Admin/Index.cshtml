@@ -1,0 +1,63 @@
+﻿@model DashboardCount
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-section">
+    <div class="block-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="block">
+                            <span class="icon-total-user block-icon"></span>
+                            <h3>@Model.TotalUsers</h3>
+                            <p>
+                                Total Users
+                            </p>
+                        </div> <!-- block -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="block">
+                            <span class="icon-total-video block-icon"></span>
+                            <h3>@Model.HighringMangerCount</h3>
+                            <p>
+                                Total Hiring Mangers
+                            </p>
+                        </div> <!-- block -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="block">
+                            <span class="icon-total-job block-icon"></span>
+                            <h3>@Model.EmployeeCount</h3>
+                            <p>
+                                Total Employees
+                            </p>
+                        </div> <!-- block -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="block">
+                            <span class="icon-total-job block-icon"></span>
+                            <h3>@Model.TotalRoles</h3>
+                            <p>
+                                Total Roles
+                            </p>
+                        </div> <!-- block -->
+                    </div>
+                    @* <div class="col-md-4">
+                        <div class="block">
+                            <span class="icon-total-job block-icon"></span>
+                            <h3>@Model.TotalJobs</h3>
+                            <p>
+                                Total Jobs
+                            </p>
+                        </div> <!-- block -->
+                    </div> *@
+                </div> <!-- row -->
+            </div> <!-- col -->
+        </div> <!-- row -->
+    </div> <!-- block-section -->
+    @* <div class="report-section">
+    <h2>Reports</h2>
+    </div> <!-- report-section -->*@
+</div>

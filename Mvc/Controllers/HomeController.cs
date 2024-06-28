@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Models;
+using Mvc.Models;
 
 namespace WorkerHub.Application.Controllers
 {
@@ -15,6 +15,23 @@ namespace WorkerHub.Application.Controllers
 
         public IActionResult Index()
         {
+            DateTime timeOfDayGreeting = DateTime.Now;
+            var greeting = "";
+            if (timeOfDayGreeting.Hour >= 5 && timeOfDayGreeting.Hour < 12)
+            {
+                greeting = "Good Morning";
+            }
+            else if (timeOfDayGreeting.Hour >= 12 && timeOfDayGreeting.Hour < 16)
+            {
+                greeting = "Good Afternoon";
+            }
+            else
+            {
+                greeting = "Good Evening";
+            }
+
+            var loggedInUserName = User.Claims.FirstOrDefault(a => a.Type == "EmployeeName");
+            ViewData["HeaderText"] = $"{greeting} - {loggedInUserName?.Value}";
             return View();
         }
 

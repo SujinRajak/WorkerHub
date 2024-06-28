@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel
+namespace Mvc.ViewModel
 {
     public class SignUpViewModel
     {

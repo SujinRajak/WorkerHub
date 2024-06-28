@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using Domain.Interfaces;
 using Infrastructure.Data;
-using Helper;
 using Infrastructure.Identity;
 using Mvc.Interfaces;
 using Mvc.Services;
 using Mvc.Services.Email;
+using WorkerHub.Infrastructure.Data;
 
 namespace Mvc.Startup
 {
@@ -20,6 +20,9 @@ namespace Mvc.Startup
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddTransient<IApplicationUser, ApplicationUserService>();
+            services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
+            services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
+            services.AddScoped<IAdmin, AdminService>();
             services.AddHttpContextAccessor();
         }
     }

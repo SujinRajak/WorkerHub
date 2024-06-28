@@ -13,6 +13,30 @@ namespace Mvc.Controllers
             _admin = admin;     
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            DateTime timeOfDayGreeting = DateTime.Now;
+            var greeting = "";
+            if (timeOfDayGreeting.Hour >= 5 && timeOfDayGreeting.Hour < 12)
+            {
+                greeting = "Good Morning";
+            }
+            else if (timeOfDayGreeting.Hour >= 12 && timeOfDayGreeting.Hour < 16)
+            {
+                greeting = "Good Afternoon";
+            }
+            else
+            {
+                greeting = "Good Evening";
+            }
+
+            var loggedInUserName = User.Claims.FirstOrDefault(a => a.Type == "EmployeeName");
+            ViewData["HeaderText"] = $"{greeting} - {loggedInUserName?.Value}";
+            var model = _admin.GetTotalCount();
+            return View(model);
+        }
+
         //[HttpGet]
         //public async Task<IActionResult> AdminPage()
         //{
@@ -44,6 +68,6 @@ namespace Mvc.Controllers
         //    }
         //    return View(model);
         //}
-       
+
     }
 }

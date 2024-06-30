@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <Content Remove="Views\Admin\Index.cshtml" />
+    <Content Remove="Views\Admin\UserRole.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Admin\Index.cshtml" />
+    <None Include="Views\Admin\UserRole.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
@@ -82,6 +84,14 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\EmailHandler\EmailHandler.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\UserRole.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\UserRole.cshtml" />
   </ItemGroup>
 
 </Project>

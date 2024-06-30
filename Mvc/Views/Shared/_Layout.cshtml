@@ -62,13 +62,12 @@
     $(document).ready(function () {
         // Get the current URL
         var url = window.location.href;
-        var splitUrl = url.split(/[/?]/);
-        var sliceUrl = splitUrl.slice(3, 5);
-        var concatString = sliceUrl.slice(0, 1);
+        const parsedUrl = new URL(url);
+        const path = parsedUrl.pathname;
         // Add the active class to the corresponding navigation link
         $('.menu ul li a').each(function () {
-            var innerAttrSplit = $(this).attr('href').split('/').slice(1, 2);
-            if (concatString == innerAttrSplit[0]) {
+            var innerAttrSplit = $(this).attr('href');
+            if (path == innerAttrSplit) {
                 $(this).closest('li').addClass('active');
             }
         });

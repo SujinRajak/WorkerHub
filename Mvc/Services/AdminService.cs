@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Mvc.Interfaces;
 using Mvc.Models;
 using Mvc.ViewModels;
@@ -26,7 +27,7 @@ namespace Mvc.Services
             return await _uow.AsyncRepository<vw_EmployeeInfo>().ListAllAsync();
         }
 
-        public async  Task<List<vw_EmployeeList>> GetAllEmployees()
+        public async Task<List<vw_EmployeeList>> GetAllEmployees()
         {
             return await _uow.AsyncRepository<vw_EmployeeList>().ListAllAsync();
         }
@@ -36,10 +37,17 @@ namespace Mvc.Services
             return await _uow.AsyncRepository<vw_HiringMangersList>().ListAllAsync();
         }
 
+
+        public async Task<List<vw_UserRoles>> GetAllUserRoles()
+        {
+            return await _uow.AsyncRepository<vw_UserRoles>().ListAllAsync();
+
+        }
+
         public DashboardCount GetTotalCount()
         {
-            DashboardCount dashboard= new DashboardCount();
-            var details= _uow.Repository<sp_GetTotalCount>().ExecQuery("sp_GetTotalCount").FirstOrDefault() ;
+            DashboardCount dashboard = new DashboardCount();
+            var details = _uow.Repository<sp_GetTotalCount>().ExecQuery("sp_GetTotalCount").FirstOrDefault();
             details.CopyPropertiesTo(dashboard);
             return dashboard;
 

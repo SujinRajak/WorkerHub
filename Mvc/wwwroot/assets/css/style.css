@@ -10509,7 +10509,11 @@ body.login {
     margin-bottom: 30px;
     position: relative; }
     .menu li span {
-      display: inline-block; }
+      display: inline-block; 
+    }
+    .menu li span i{
+       color:#fff;
+    }
     .menu li a {
       display: block; }
     .menu li .menu-item-wrap {

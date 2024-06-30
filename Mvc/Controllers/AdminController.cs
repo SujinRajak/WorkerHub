@@ -4,6 +4,8 @@ using DevExtreme.AspNet.Mvc;
 using DevExtreme.AspNet.Data;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Mvc.Controllers
 {
@@ -78,10 +80,11 @@ namespace Mvc.Controllers
         [HttpGet("GetAllRoles")]
         public async Task<object> GetAllRoles(DataSourceLoadOptions loadOptions)
         {
-            var data = _roleManager.Roles;
+            var data = await _roleManager.Roles.ToListAsync();
+
             if (data !=null)
             {
-                return DataSourceLoader.Load(data.OrderBy(a => a.Name), loadOptions);
+                return DataSourceLoader.Load(data, loadOptions);
             }
             return DataSourceLoader.Load(new List<vw_HiringMangersList>(), loadOptions);
         }
@@ -116,6 +119,24 @@ namespace Mvc.Controllers
             return Content(content);
         }
 
+
+        [HttpGet("UserRole")]
+        public IActionResult UserRole(DataSourceLoadOptions loadOptions)
+        {
+            return View();
+        }
+
+        [HttpGet("GetAllUserRoles")]
+        public async Task<object> GetUserRole(DataSourceLoadOptions loadOptions)
+        {
+            var data = await _admin.GetAllUserRoles();
+            if (data != null)
+            {
+                return DataSourceLoader.Load(data.OrderBy(a => a.Name), loadOptions);
+            }
+            return DataSourceLoader.Load(new List<vw_UserRoles>(), loadOptions);
+            
+        }
 
 
         //[HttpGet]

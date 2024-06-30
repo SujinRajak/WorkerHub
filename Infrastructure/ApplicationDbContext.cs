@@ -28,6 +28,7 @@ namespace Infrastructure
         public DbSet<vw_EmployeeInfo> vw_EmployeeInfo { get; set; }
         public DbSet<vw_EmployeeList> vw_EmployeeLists { get; set; }
         public DbSet<vw_HiringMangersList> vw_HiringMangersLists { get; set; }
+        public DbSet<vw_UserRoles> vw_UserRoles { get; set; }
         public DbSet<sp_GetTotalCount> sp_GetTotalCount { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

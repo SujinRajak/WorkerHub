@@ -15,6 +15,7 @@ namespace Mvc.Interfaces
         Task<List<vw_HiringMangersList>> GetAllHiringManagersList();
 
         Task<List<vw_EmployeeInfo>> GetAllEmployeeInfo();
+        Task<List<vw_UserRoles>> GetAllUserRoles();
         DashboardCount GetTotalCount();
     }
 }

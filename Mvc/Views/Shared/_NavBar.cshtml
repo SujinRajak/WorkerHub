@@ -1,4 +1,8 @@
-﻿<div class="secondary-section">
+﻿@{
+    var userRole = User.Claims.FirstOrDefault(c => c.Type == "Role")?.Value;
+}
+
+<div class="secondary-section">
     <div class="secondary-btn">
         <i class="fa fa-angle-right" aria-hidden="true"></i>
     </div>
@@ -10,42 +14,136 @@
             <img src="~/assets/images/logo.svg" alt="">
         </div> <!-- logo -->
     </div>
-    <div class="menu">
-        <ul>
-            <li>
-                <a asp-controller="Home" asp-action="Index" title="Dashboard">
-                    <div class="menu-item-wrap">
-                        <span class="icon icon-menu"></span>
-                        <span class="menu-item"> Dashboard</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="User" asp-action="Index" title="User info">
-                    <div class="menu-item-wrap">
-                        <span class="icon icon-users"></span>
-                        <span class="menu-item"> User Info</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Content" asp-action="Index" title="Content Moderation">
-                    <div class="menu-item-wrap">
-                        <span class="icon-flag"></span>
-                        <span class="menu-item"> Content Moderation</span>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Notification" asp-action="Index" title="Mass Notification">
-                    <div class="menu-item-wrap">
-                        <span class="icon-notification"></span>
-                        <span class="menu-item"> Mass Notification</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div> <!-- menu -->
+
+
+
+    @{
+        if (userRole == "Admin")
+        {
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a asp-controller="Admin" asp-action="Index" title="Dashboard">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-menu"></span>
+                                <span class="menu-item"> Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="UserRole" title="User info">
+                            <div class="menu-item-wrap">
+                                <span class="icon"><i class="icon fa fa-edit"></i></span>
+                                <span class="menu-item">User Role</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="UserInfo" title="User info">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-users"></span>
+                                <span class="menu-item">User Info</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="Employee" title="Employees">
+                            <div class="menu-item-wrap">
+                                <span class="icon-flag"></span>
+                                <span class="menu-item"> Content Moderation</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="Hiring" title="Hiring Managers">
+                            <div class="menu-item-wrap">
+                                <span class="icon-flag"></span>
+                                <span class="menu-item"> Content Moderation</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        else if (userRole == "Hiring Manager")
+        {
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a asp-controller="Hire" asp-action="Index" title="Dashboard">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-menu"></span>
+                                <span class="menu-item"> Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Hire" asp-action="Index" title="User info">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-users"></span>
+                                <span class="menu-item"> User Info</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Hire" asp-action="Index" title="Content Moderation">
+                            <div class="menu-item-wrap">
+                                <span class="icon-flag"></span>
+                                <span class="menu-item"> Content Moderation</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Hire" asp-action="Index" title="Mass Notification">
+                            <div class="menu-item-wrap">
+                                <span class="icon-notification"></span>
+                                <span class="menu-item"> Mass Notification</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" title="Dashboard">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-menu"></span>
+                                <span class="menu-item"> Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="User" asp-action="Index" title="User info">
+                            <div class="menu-item-wrap">
+                                <span class="icon icon-edit"></span>
+                                <span class="menu-item"> User Info</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Content" asp-action="Index" title="Content Moderation">
+                            <div class="menu-item-wrap">
+                                <span class="icon-flag"></span>
+                                <span class="menu-item"> Content Moderation</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Notification" asp-action="Index" title="Mass Notification">
+                            <div class="menu-item-wrap">
+                                <span class="icon-notification"></span>
+                                <span class="menu-item"> Mass Notification</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+    }
     <div class="logout">
         <a asp-controller="Account" asp-action="Logout">
             <div class="menu-item-wrap">
@@ -54,7 +152,5 @@
             </div>
         </a>
     </div> <!-- logout-->
-</div> <!-- left-sidebar -->
-
-
+</div> <!-- menu -->
 
